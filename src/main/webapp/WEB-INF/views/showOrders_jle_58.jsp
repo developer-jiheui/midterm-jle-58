@@ -33,7 +33,7 @@
 				<td>Discount</td>
 				<td>Price</td>
 			</tr>
-			<c:forEach var="order" items="${orderList}">
+			<c:forEach var="order" items="${orderList}" varStatus="status">
 				<tr>
 					<td>${order.id}</td>
 					<td>${order.firstname}</td>
@@ -41,7 +41,7 @@
 					<td>${order.size}</td>
 					<td>${order.numToppings}</td>
 					<td>%${order.discount}</td>	
-					<td>$500</td>				
+					<td>$ ${ priceList[status.index] }</td>	
 				</tr>
 			</c:forEach>
 		</table>

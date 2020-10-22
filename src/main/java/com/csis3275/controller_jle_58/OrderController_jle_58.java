@@ -43,9 +43,36 @@ public class OrderController_jle_58 {
 	public String showOrders(HttpSession session, Model model)	{
 		//Get a list of students from the database
 		List<Order_jle_58> orders = orderDAOImp.getAllOrders();
+		double[] prices = new double[orders.size()];
+		
+		for(int i = 0; i < orders.size(); i++) {
+			Order_jle_58 currOrder = orders.get(i);
+			double currPrice = 0;
+			switch(currOrder.getSize()) {
+				case "personal":
+					currPrice += 7.99;
+					break;
+				case "small":
+					currPrice += 9.99;
+					break;
+				case "medium":
+					currPrice += 12.99;
+					break;
+				case "large":
+					currPrice += 14.99;
+					break;
+			}
+						
+			currPrice += currOrder.getNumToppings() * 1.99;
+			currPrice *= 100 - currOrder.getDiscount();
+			
+			prices[i] = currPrice; 
+		}
 		
 		//Add the list of students to the model to be returned to the view
-		model.addAttribute("ordertList", orders);
+		model.addAttribute("orderList", orders);
+		
+		model.addAttribute("priceList", prices);
 		
 		return "showOrders_jle_58";		
 	}
@@ -56,10 +83,40 @@ public class OrderController_jle_58 {
 
 		 //Create the student pass the object in.
 		 orderDAOImp.createOrder(newOrder);
+		 
 
 		 //Get a list of students from the controller
 		 List<Order_jle_58> orders = orderDAOImp.getAllOrders();
 		 model.addAttribute("orderList", orders);
+		 
+		 double[] prices = new double[orders.size()];
+			
+			for(int i = 0; i < orders.size(); i++) {
+				Order_jle_58 currOrder = orders.get(i);
+				double currPrice = 0;
+				switch(currOrder.getSize()) {
+					case "personal":
+						currPrice += 7.99;
+						break;
+					case "small":
+						currPrice += 9.99;
+						break;
+					case "medium":
+						currPrice += 12.99;
+						break;
+					case "large":
+						currPrice += 14.99;
+						break;
+				}
+							
+				currPrice += currOrder.getNumToppings() * 1.99;
+				currPrice *= 100 - currOrder.getDiscount();
+				
+				prices[i] = currPrice; 
+			}
+		 
+			model.addAttribute("priceList", prices);
+
 	
 		 return "showOrders_jle_58";
 	 }
