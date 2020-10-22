@@ -64,7 +64,7 @@ public class OrderController_jle_58 {
 			}
 						
 			currPrice += currOrder.getNumToppings() * 1.99;
-			currPrice *= 100 - currOrder.getDiscount();
+			currPrice = currPrice*(100 - currOrder.getDiscount())/100;
 			
 			prices[i] = currPrice; 
 		}
@@ -110,7 +110,7 @@ public class OrderController_jle_58 {
 				}
 							
 				currPrice += currOrder.getNumToppings() * 1.99;
-				currPrice *= 100 - currOrder.getDiscount();
+				currPrice = currPrice*(100 - currOrder.getDiscount())/100;
 				
 				prices[i] = currPrice; 
 			}
