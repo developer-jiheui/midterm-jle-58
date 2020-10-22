@@ -50,5 +50,18 @@ public class OrderController_jle_58 {
 		return "showOrders_jle_58";		
 	}
 	
+	 //Handle Form Post
+	 @PostMapping("/createOrder")
+	 public String createOrder(@ModelAttribute("order") Order_jle_58 newOrder, Model model) {
+
+		 //Create the student pass the object in.
+		 orderDAOImp.createOrder(newOrder);
+
+		 //Get a list of students from the controller
+		 List<Order_jle_58> orders = orderDAOImp.getAllOrders();
+		 model.addAttribute("orderList", orders);
+	
+		 return "showOrders_jle_58";
+	 }
 	
 }

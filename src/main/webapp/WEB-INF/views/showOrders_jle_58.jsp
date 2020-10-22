@@ -45,7 +45,46 @@
 				</tr>
 			</c:forEach>
 		</table>
-		
+		<h3>Create Order</h3>
+		<form:form action="${pageContext.request.contextPath}/createOrder/"
+			cssClass="form-horizontal" method="post" modelAttribute="order">
+			<div class="form-group">
+				<label for="firstname" class="col-md-3 controllabel">First Name</label>
+				<div class="col-md-9">
+					<form:input path="firstname" cssClass="form-control" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="lastname" class="col-md-3 controllabel">Last Name</label>
+				<div class="col-md-9">
+					<form:input path="lastname" cssClass="form-control" />
+				</div>
+			</div>		
+			<div class="form-group">
+				<form:select path="size" id="size">
+					<form:option value="">Select Size</form:option>
+					<form:options items="${sizes}" />
+				</form:select>
+			</div>
+			<div class="form-group">
+				<label for="discount" class="col-md-3 controllabel">Discount</label>
+				<div class="col-md-9">
+					<form:input type="number" path="discount" cssClass="form-control" />
+				</div>
+			</div>	
+			<div class="form-group">
+				<label for="numToppings" class="col-md-3 controllabel">Number of Toppings</label>
+				<div class="col-md-9">
+					<form:input type="number" path="numToppings" cssClass="form-control" />
+				</div>
+			</div>	
+			<div class="form-group">
+				<!-- Button -->
+				<div class="col-md-offset-3 col-md-9">
+					<form:button class="btn btn-primary">Submit</form:button>
+				</div>
+			</div>
+		</form:form>
 	</div>
 </body>
 </html>

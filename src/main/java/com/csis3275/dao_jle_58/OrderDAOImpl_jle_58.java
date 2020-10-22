@@ -32,6 +32,14 @@ public class OrderDAOImpl_jle_58 {
 		
 	}
 	
-	
+	public boolean createOrder(Order_jle_58 newOrder) {
+		return jdbcTemplate.update(SQL_CREATE_ORDER, 
+									newOrder.getSize(), 
+									newOrder.getFirstname(),
+									newOrder.getLastname(), 
+									newOrder.getDiscount(),
+									newOrder.getNumToppings()) > 0;
+	}
+
 	
 }
